@@ -1,6 +1,5 @@
 # 🧠 altKod
-**altKod** je moderna **digitalna agencija i tech magazin iz Hrvatske**, izrađen pomoću **Astro**, **Tailwind CSS** i **Directus** tehnologija.  
-Fokusirani smo na **brzinu, čisti dizajn** i **sigurnost**.
+**altKod** je moderna **digitalna agencija i tech magazin iz Hrvatske**, izrađen pomoću **Astro**, **Tailwind CSS** i **Directus** tehnologija. Fokusirani smo na **brzinu, čisti dizajn** i **sigurnost**.
 
 ## 🚀 Tehnologije
 
@@ -12,7 +11,7 @@ Fokusirani smo na **brzinu, čisti dizajn** i **sigurnost**.
 | [Umami](https://umami.is/) | Moderna open-source platforma za web analitiku |
 | [Coolify](https://coolify.io/) | Open-source Heroku alternativa |
 
-## 🏗️ Pregled projekta
+## 🏗️ O Projektu
 
 altKod je kombinacija **agencijskog weba** i **blog platforme** za developere, dizajnere i kreatore sadržaja u Hrvatskoj i šire.
 
