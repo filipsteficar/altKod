@@ -1,46 +1,37 @@
-# Astro Starter Kit: Basics
+# 🧠 altKod
+**altKod** je moderna **digitalna agencija i tech magazin iz Hrvatske**, izrađen pomoću **Astro**, **Tailwind CSS** i **Directus** tehnologija.  
+Fokusirani smo na **brzinu, čisti dizajn** i **sigurnost**.
 
-```sh
-npm create astro@latest -- --template basics
-```
+## 🚀 Tehnologije
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+| Tehnologija | Namjena |
+|-------------|---------|
+| [Astro](https://astro.build) | Frontend framework za superbrze statične i hibridne web stranice |
+| [Tailwind CSS](https://tailwindcss.com) | Utility-first CSS framework za moderni dizajn |
+| [Directus](https://directus.io) | Open-source headless CMS i API |
+| [Umami](https://umami.is/) | Moderna open-source platforma za web analitiku |
+| [Coolify](https://coolify.io/) | Open-source Heroku alternativa |
 
-## 🚀 Project Structure
+## 🏗️ Pregled projekta
 
-Inside of your Astro project, you'll see the following folders and files:
+altKod je kombinacija **agencijskog weba** i **blog platforme** za developere, dizajnere i kreatore sadržaja u Hrvatskoj i šire.
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+### ✨ Značajke
+- 📰 Dinamičan Blog Putem **Directusa**
+- 🌐 SEO Optimizirano (Schema.org, OpenGraph, TwitterCards)
+- 💨 Responzivan dizajn Temeljen Na Tailwindu
+- 🧩 Modularna Struktura Komponenti Za Jednostavne Izmjene
+- 🔒 Siguran i Skalabilan Hosting Na Hetzner Infrastrukturi Putem Coolify-a
+- 🇭🇷 Fokus Na Hrvatsko Tržište
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+---
 
-## 🧞 Commands
+**altKod** nije samo web stranica - to je digitalno igralište za kreatore. Pišemo, dizajniramo i razvijamo s fokusom na etiku, estetiku i tehnologiju.
 
-All commands are run from the root of the project, from a terminal:
+---
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### Kontakt
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- 🌐 altkod.com
+- 📸 IG: @altkod_ig
+- 🧑‍💻 Autori: Viktorija Jakšić | Filip Štefičar
