@@ -29,4 +29,5 @@
 
 - 🌐 altkod.com
 - 📸 IG: @altkod_ig
+- 📽️ YouTube: https://youtube.com/@altkod_com
 - 🧑‍💻 Autori: Viktorija Jakšić | Filip Štefičar
