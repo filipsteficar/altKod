@@ -1,5 +1,6 @@
 import { createDirectus, rest } from '@directus/sdk';
 
+// Blog Posts
 type Post = {
     id: string;
     status: string;
@@ -13,8 +14,19 @@ type Post = {
     post_content: string;
     // SEO
     page_description: string;
+    // Many To Many - Array of Related Categories
+    categories: Category[];
 }
 
+// Category (Many To Many)
+type Category = {
+  id: string;
+  title: string;
+  slug: string;
+  description?: string; // Optional Descripition
+};
+
+// Author
 type Author = {
     id: string;
     name: string;
@@ -26,6 +38,7 @@ type Author = {
 type Schema = {
     // Key Must Match Directus 100%
     posts: Post[];
+    categories: Category[];
     authors: Author[];
 }
 

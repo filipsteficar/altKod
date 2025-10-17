@@ -66,7 +66,7 @@ const { page } = Astro.props as { page: Page<Post> };
                 title={singlePost.title}
                 author={singlePost.author?.name || "Unknown Author"}
                 date={new Date(singlePost.date_created).toLocaleDateString('en-GB')}
-                href={`/altkademija/${singlePost.slug}`}
+                href={`/learning-center/${singlePost.slug}`}
                 />
             ))}
         </div>
@@ -75,13 +75,13 @@ const { page } = Astro.props as { page: Page<Post> };
             <div class="mt-4 mb-4">
                 <nav class="flex flex-row justify-between items-center gap-4 mx-auto px-4 container">
                     {page.url.prev && (
-                        <a href={page.url.prev} class="bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-800 px-4 py-2 rounded-xl transition-colors duration-500 ease-in-out">Prethodna</a>
+                        <a href={page.url.prev} class="bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-800 px-4 py-2 rounded-xl transition-colors duration-500 ease-in-out">Previous</a>
                     )}
                     
-                    <p class="font-heading font-extrabold uppercase">Stranica {page.currentPage} od {page.lastPage}</p>
+                    <p class="font-heading font-extrabold uppercase">Page {page.currentPage} of {page.lastPage}</p>
                     
                     {page.url.next && (
-                        <a href={page.url.next} class="bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-800 px-4 py-2 rounded-xl transition-colors duration-500 ease-in-out">Sljedeća</a>
+                        <a href={page.url.next} class="bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-800 px-4 py-2 rounded-xl transition-colors duration-500 ease-in-out">Next</a>
                     )}
                 </nav>
             </div>

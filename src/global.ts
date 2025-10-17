@@ -19,12 +19,12 @@ interface MenuItem {
 // Main Menu
 export const mainMenu: MenuItem[] = [
     {
-        label: "Početna",
+        label: "Home",
         href: "/"
     },
     {
-        label: "altKademija",
-        href: "/altkademija"
+        label: "Learning Center",
+        href: "/learning-center"
     }
 ]
 // Contact Info
