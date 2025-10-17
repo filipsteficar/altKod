@@ -1,0 +1,100 @@
+---
+// Layouts
+import Layout from "../../layouts/Layout.astro";
+// Components
+import { Image } from 'astro:assets';
+import BackToArchive from "../../components/BackToArchive.astro";
+// Data Imports
+import { siteData } from "../../global";
+// Directus
+import directus from "../../lib/directus";
+import { readItems } from "@directus/sdk";
+import BlogSchema from "../../components/BlogSchema.astro";
+// Directus Export Posts
+export async function getStaticPaths() {
+    const posts = await directus.request(
+        readItems("posts", {
+            fields: [
+                "id",
+                "date_created",
+                "date_updated",
+                "title",
+                "page_description",
+                "slug",
+                "cover",
+                "cover_alt_text",
+                "status",
+                "post_content",
+                {
+                    author: ["id", "name", "avatar", "slug", "bio"]
+                }
+            ],
+            filter: {
+                status: {
+                    _eq: "published"
+                }
+            },
+            sort: ["-date_created"],
+            limit: -1,
+        })
+    );
+
+    return posts.map((singlePost) => ({
+        params: { slug: singlePost.slug },
+        props: { singlePost }
+    }));
+}
+
+const { singlePost } = Astro.props;
+// Enable or Disable Back Button (For Testing)
+const ENABLE_BACK_BUTTON = true;
+---
+<Layout pageTitle={`${singlePost.title} - ${siteData.name}`} pageDescription={singlePost.page_description} currentURL={new URL(Astro.url.pathname, Astro.site).href} ogType="article" ogImage={`${siteData.cmsURL}/assets/${singlePost.cover}?width=1200&height=630&fit=cover&format=webp`} ogImageAlt={singlePost.cover_alt_text} articleAuthor={singlePost.author.name}>
+    <Fragment slot="head">
+        <BlogSchema
+        pageTitle={`${singlePost.title} - ${siteData.name}`}
+        pageDescription={singlePost.page_description}
+        currentURL={new URL(Astro.url.pathname, Astro.site).href}
+        datePublished={singlePost.date_created}
+        dateModified={singlePost.date_updated}
+        ogImage={`${siteData.cmsURL}/assets/${singlePost.cover}?width=1200&height=630&fit=cover&format=webp`}
+        articleAuthor={singlePost.author.name} />
+    </Fragment>
+    <article class="@container">
+        <!-- Post Title -->
+        <div class="mx-auto mt-4 px-4 lg:max-w-4xl container">
+            <h1 class="font-heading font-semibold text-xl">{singlePost.title}</h1>
+            <div class="flex flex-row justify-between gap-4">
+                <p>By {singlePost.author?.name || "Unknown Author"}</p>
+                <time datetime={singlePost.date_created}>
+                    {new Date(singlePost.date_created).toLocaleDateString('en-GB')}
+                </time>
+            </div>
+        </div>
+        <!-- Cover Image -->
+        <div class="mx-auto mt-4 px-4 container">
+            {singlePost.cover && (
+                <Image src={`${siteData.cmsURL}/assets/${singlePost.cover}?width=2400&quality=100&format=webp`} alt={singlePost.cover_alt_text} width="2400" height="800" class="rounded-lg object-cover aspect-[16/9]" loading="eager" />
+            )}
+        </div>
+        <!-- Post Content -->
+        <div class="[&_*]:m-0 mx-auto [&_:is(h1,h2,h3,h4,h5,h6)]:mt-4 [&_p]:mt-4 [&_*]:p-0 px-4 [&_img]:rounded-lg lg:max-w-4xl [&_:is(h1,h2,h3,h4,h5,h6)]:font-heading [&_:is(h1,h2,h3,h4,h5,h6)]:font-semibold [&_:is(h1,h2,h3,h4,h5,h6)]:text-neutral-950 [&_a]:text-neutral-950 [&_p]:text-neutral-700 dark:[&_:is(h1,h2,h3,h4,h5,h6)]:text-neutral-50 dark:[&_a]:text-neutral-50 dark:[&_p]:text-neutral-300 [&_h3]:text-lg [&_h2]:text-xl [&_h1]:text-2xl [&_a]:underline [&_a]:underline-offset-2 container">
+            <Fragment set:html={singlePost.post_content} />
+        </div>
+        <!-- Author -->
+        <div class="bg-neutral-100 dark:bg-neutral-900 mt-4">
+            <div class="flex flex-col gap-4 mx-auto p-4 lg:max-w-4xl container">
+                <Image src={`${siteData.cmsURL}/assets/${singlePost.author.avatar}?width=400&quality=100&format=webp`} alt={singlePost.author.name} width="400" height="400" class="rounded-full max-w-30 object-cover aspect-[1/1]" loading="lazy" />
+                <h3 class="font-heading font-semibold text-lg">Autor: {singlePost.author.name}</h3>
+                <p class="text-neutral-700 dark:text-neutral-300">{singlePost.author.bio}</p>
+            </div>
+        </div>
+        <!-- Back To Archive -->
+        {ENABLE_BACK_BUTTON && (
+        <BackToArchive
+        href="/altkademija"
+        buttonTitle="Povratak u Arhivu"
+        />
+        )}
+    </article>
+</Layout>

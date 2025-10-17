@@ -1,16 +1,47 @@
 ---
-
+// Import Tailwind
+import "../styles/global.css";
+// Components
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Umami from "../components/Umami.astro";
+import SEO from "../components/SEO.astro";
+// Data Imports
+import { siteData } from '../global';
+// Props
+const { pageTitle, pageDescription, currentURL, ogType, ogImage, ogImageAlt, articleAuthor, datePublished, dateModified } = Astro.props;
+// View Transitions
+import { ClientRouter } from "astro:transitions";
 ---
 <!doctype html>
-<html lang="en">
+<html lang={siteData.lang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<SEO
+		pageTitle={pageTitle}
+		pageDescription={pageDescription}
+		currentURL={currentURL}
+		ogType={ogType}
+		ogImage={ogImage}
+		ogImageAlt={ogImageAlt}
+		articleAuthor={articleAuthor}
+		datePublished={datePublished}
+		dateModified={dateModified} />
+		<slot name="head" />
+		<Umami />
+		<ClientRouter />
+		<script>
+			console.log("%caltKod Te Gleda 👀", "color:lime; font-size:20px;");
+  		</script>
 	</head>
-	<body>
-		<slot />
+	<body class="flex flex-col bg-neutral-50 dark:bg-neutral-950 min-h-screen font-body font-normal text-neutral-950 dark:text-neutral-50 text-base">
+		<Header />
+		<main>
+			<slot />
+		</main>
+		<Footer />
 	</body>
 </html>

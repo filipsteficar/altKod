@@ -1,0 +1,46 @@
+---
+// Props
+const {
+    pageTitle,
+    pageDescription,
+    datePublished,
+    dateModified,
+    currentURL,
+    ogImage,
+    articleAuthor
+} = Astro.props;
+// Data Imports
+import { siteData } from '../global';
+// Build JSON-LD Schema Only if Required Data Exists
+const jsonLdSchema = currentURL && pageTitle ? {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": currentURL,
+    "headline": pageTitle,
+    "description": pageDescription || "Platforma Za Stjecanje Digitalnih Vještina",
+    ...(ogImage && { "image": ogImage }),
+    ...(articleAuthor && {
+    "author": {
+        "@type": "Person",
+        "name": articleAuthor
+    }
+    }),
+    "publisher": {
+        "@type": "Organization",
+        "@id": siteData.url,
+        "name": siteData.name
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": currentURL
+    },
+    ...(datePublished && { "datePublished": datePublished }),
+    ...(dateModified && { "dateModified": dateModified }),
+    "inLanguage": siteData.langSchema,
+    "isAccessibleForFree": true
+} : null;
+---
+<!-- Schema -->
+{jsonLdSchema && (
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLdSchema)} />
+)}

@@ -1,0 +1,19 @@
+---
+// Data Imports
+import { siteData } from "../global"
+import { mainMenu } from "../global"
+---
+<header class="@container bg-neutral-100 dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800 border-b-2">
+    <div class="flex flex-row flex-wrap justify-between gap-4 mx-auto my-4 px-4 container">
+        <p class="font-heading font-semibold transition-transform hover:-translate-y-1 duration-500 ease-in-out"><a href="/">{siteData.name}</a></p>
+        <nav>
+            <ul class="flex flex-row flex-wrap gap-4">
+                {mainMenu.map((menuItem) => (
+                <li class="text-neutral-700 hover:text-neutral-950 dark:hover:text-neutral-50 dark:text-neutral-300 transition-colors duration-500 ease-in-out">
+                    <a href={menuItem.href} target={menuItem.isExternal ? '_blank' : undefined} rel={menuItem.isExternal ? 'noopener noreferrer' : undefined}>{menuItem.label}</a>
+                </li>
+                ))}
+            </ul>
+        </nav>
+    </div>
+</header>

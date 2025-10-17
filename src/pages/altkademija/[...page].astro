@@ -1,0 +1,90 @@
+---
+// Layouts
+import Layout from "../../layouts/Layout.astro";
+// Components
+import PageTitle from "../../components/PageTitle.astro";
+import BlogCard from "../../components/BlogCard.astro";
+// Astro Types
+import type { Page, PaginateFunction } from 'astro';
+// Data Imports
+import { siteData } from "../../global";
+// Directus Imports
+import directus from "../../lib/directus";
+import { readItems } from "@directus/sdk";
+// Post Interface
+interface Post {
+    id: string;
+    title: string;
+    slug: string;
+    cover: string;
+    date_created: string;
+    status: string;
+    author?: {
+        id: string;
+        name: string;
+        slug: string;
+    };
+}
+// Query Posts With Pagination
+export async function getStaticPaths({ paginate }: { paginate: PaginateFunction }) {
+    const posts = await directus.request(
+        readItems("posts", {
+            fields: [
+                "id",
+                "title",
+                "slug",
+                "cover",
+                "date_created",
+                "status",
+                {
+                    author: ["id", "name", "slug"]
+                }
+            ],
+            filter: {
+                status: {
+                    _eq: "published"
+                }
+            },
+            sort: ["-date_created"],
+            limit: -1,
+        })
+    );
+
+    // Return Paginated Paths With X Posts Per Page
+    return paginate(posts, { pageSize: 9 });
+}
+// Page Prop
+const { page } = Astro.props as { page: Page<Post> };
+---
+<Layout pageTitle={`Blog - ${siteData.name}`} pageDescription="This is our blog archive. The best vegan blog archive on the internet!" currentURL={Astro.url}>
+    <PageTitle pageTitle="Blog" />
+    <section class="@container">
+        <div class="gap-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mx-auto mt-4 px-4 container">
+            {page.data.map((singlePost: Post) => (
+                <BlogCard
+                imgSRC={`${siteData.cmsURL}/assets/${singlePost.cover}?width=1200&quality=80&format=webp`}
+                title={singlePost.title}
+                author={singlePost.author?.name || "Unknown Author"}
+                date={new Date(singlePost.date_created).toLocaleDateString('en-GB')}
+                href={`/altkademija/${singlePost.slug}`}
+                />
+            ))}
+        </div>
+        <!-- Pagination Controls -->
+        {page.lastPage > 1 && (
+            <div class="mt-4 mb-4">
+                <nav class="flex flex-row justify-between items-center gap-4 mx-auto px-4 container">
+                    {page.url.prev && (
+                        <a href={page.url.prev} class="bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-800 px-4 py-2 rounded-xl transition-colors duration-500 ease-in-out">Prethodna</a>
+                    )}
+                    
+                    <p class="font-heading font-semibold uppercase">Stranica {page.currentPage} od {page.lastPage}</p>
+                    
+                    {page.url.next && (
+                        <a href={page.url.next} class="bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-800 px-4 py-2 rounded-xl transition-colors duration-500 ease-in-out">Sljedeća</a>
+                    )}
+                </nav>
+            </div>
+        )}
+    </section>
+</Layout>
