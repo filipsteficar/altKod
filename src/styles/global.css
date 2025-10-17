@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @plugin '@tailwindcss/typography';
 @theme {
-    --font-heading: "Clash Display", "sans-serif";
+    --font-heading: "Jet Brains Mono", "sans-serif";
     --font-body: "Satoshi", "sans-serif";
     --text-xs: clamp(0.64rem, 0.11vi + 0.59rem, 0.7rem);
     --text-sm: clamp(0.8rem, 0.25vi + 0.7rem, 0.94rem);
@@ -17,14 +17,24 @@
     --text-8xl: clamp(7.45rem, 16.36vi + 0.91rem, 16.61rem);
     --text-9xl: clamp(9.31rem, 22.91vi + 0.15rem, 22.14rem);
 }
-/* Clash Display Font */
+/* Jet Brains Mono Font */
 @font-face {
-	font-family: 'Clash Display';
-	src:  url('/fonts/ClashDisplay-Variable.woff2') format('woff2'),
-        url('/fonts/ClashDisplay-Variable.woff') format('woff'),
-        url('/fonts/ClashDisplay-Variable.ttf') format('truetype');
-    font-weight: 200 700;
+	font-family: 'Jet Brains Mono';
+	src:  url('/fonts/JetBrainsMono-Variable.woff2') format('woff2'),
+        url('/fonts/JetBrainsMono-Variable.woff') format('woff'),
+        url('/fonts/JetBrainsMono-Variable.ttf') format('truetype');
+    font-weight: 100 800;
     font-style: normal;
+    font-display: swap;
+}
+/* Jet Brains Mono Italic Font */
+@font-face {
+	font-family: 'Jet Brains Mono';
+	src:  url('/fonts/JetBrainsMono-VariableItalic.woff2') format('woff2'),
+        url('/fonts/JetBrainsMono-VariableItalic.woff') format('woff'),
+        url('/fonts/JetBrainsMono-VariableItalic.ttf') format('truetype');
+    font-weight: 100 800;
+    font-style: italic;
     font-display: swap;
 }
 /* Satoshi Font */
