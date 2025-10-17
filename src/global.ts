@@ -2,10 +2,10 @@
 const currentYear = new Date().getFullYear();
 export const siteData = {
     name: "altKod",
-    lang: "hr-HR",
-    ogLang: "hr_HR",
-    langSchema: "hr",
-    copyright: `altKod - ${currentYear} | Sva Prava Pridržana`,
+    lang: "en-US",
+    ogLang: "en_US",
+    langSchema: "en",
+    copyright: `altKod - ${currentYear} | All Rights Reserved`,
     ver: "0.0.1",
     url: "https://altkod.com",
     cmsURL: "https://altkod.apollo.filipsteficar.com"
