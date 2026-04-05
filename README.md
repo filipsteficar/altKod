@@ -1,4 +1,4 @@
-# altKod
+# altKod_
 
 > 🧠 We host tools for creators so they don’t have to - no tracking, no data selling, no nonsense.
 
